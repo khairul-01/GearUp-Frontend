@@ -1,3 +1,5 @@
+// types/api.ts
+
 export interface ApiResponse<T> {
   success: boolean;
   statusCode: number;
@@ -9,4 +11,6 @@ export interface ApiError {
   success: boolean;
   statusCode: number;
   message: string;
+  errorDetails?: string;
+  name?: string;
 }

@@ -1,5 +1,10 @@
 // constants/status.ts
 
+export const USER_STATUS = {
+  ACTIVE: "ACTIVE",
+  INACTIVE: "INACTIVE",
+} as const;
+
 export const RENTAL_STATUS = {
   PLACED: "PLACED",
 
