@@ -78,3 +78,36 @@ export interface Gear {
     totalReviews: number;
     averageRating: number;
 }
+
+// CreateGearPayload
+// {
+//   "categoryId": "d2550c09-3faf-462e-8d98-6816f904f006",
+//   "name": "5 Person Camping Tent",
+//   "description": "Waterproof 5 family camping tent with ventilation windows.",
+//   "brand": "Coleman",
+//   "condition": "NEW",
+//   "rentalPricePerDay": 350,
+//   "quantity": 10
+// }
+
+export interface CreateGearPayload {
+    categoryId: string;
+    name: string;
+    description: string;
+    brand: string;
+    condition: "NEW" | "USED";
+    rentalPricePerDay: number;
+    quantity: number;
+}
+
+// UpdateGearPayload
+
+export interface UpdateGearPayload {
+    name?: string;
+    description?: string;
+    brand?: string;
+    condition?: "NEW" | "USED";
+    rentalPricePerDay?: number;
+    quantity?: number;
+    isAvailable?: boolean;
+}

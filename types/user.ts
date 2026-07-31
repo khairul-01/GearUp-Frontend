@@ -23,3 +23,12 @@ export interface User {
     createdAt: string;
     updatedAt: string;
 };
+
+// // UpdateUserPayload
+// {
+//   "status": "ACTIVE"
+// }
+
+export interface UpdateUserPayload {
+    status?: "ACTIVE" | "INACTIVE";
+}

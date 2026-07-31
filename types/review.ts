@@ -29,3 +29,16 @@ export interface Review {
         name: string;
     };
 }
+
+// CreateReviewPayload
+// {
+//   "rentalOrderId": "258a20be-5af4-41ff-b7b0-45801edd34e6",
+//   "rating": 5,
+//   "comment": "Very good quality bike. Smooth riding experience."
+// }
+
+export interface CreateReviewPayload {
+    rentalOrderId: string;
+    rating: number;
+    comment: string;
+}
