@@ -1,24 +1,43 @@
-const API_BASE_URL = `${process.env.BACKEND_API_URL}/api`;
+// lib/api-client.ts
+
+const BASE_URL = process.env.BACKEND_API_URL!;
+
+type ApiClientOptions = RequestInit & {
+  token?: string;
+};
 
 export async function apiClient<T>(
   endpoint: string,
-  options?: RequestInit
+  options: ApiClientOptions = {}
 ): Promise<T> {
+  const { token, headers, ...rest } = options;
+
   const response = await fetch(
-    `${API_BASE_URL}${endpoint}`,
-    {
-      ...options,
-      headers: {
-        "Content-Type": "application/json",
-        ...options?.headers,
-      },
-    }
-  );
+  `${BASE_URL}${endpoint}`,
+  {
+    ...rest,
+
+    cache: "no-store",
+
+    headers: {
+      "Content-Type": "application/json",
+
+      ...(token && {
+        Authorization: `Bearer ${token}`,
+      }),
+
+      ...headers,
+    },
+  }
+);
 
   const result = await response.json();
 
   if (!response.ok) {
-    throw new Error(result.message ?? "Request failed");
+    throw new Error(
+      result?.message ??
+    "Unexpected server error." 
+    );
   }
 
   return result;
