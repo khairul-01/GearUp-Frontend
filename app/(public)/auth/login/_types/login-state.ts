@@ -1,19 +1,7 @@
-import { User } from "@/types";
+import { ActionState } from "@/types/action";
 
-export interface LoginActionState {
-    success: boolean;
-    message: string;
-    data?: {
-        accessToken: string;
-        refreshToken: string;
-        user: User;
-    };
-    errorDetails?: Record<string, string[]>;
-}
 
-export const initialLoginActionState: LoginActionState = {
-    success: false,
-    message: "",
-    data: undefined,
-    errorDetails: undefined,
-}
+export const initialLoginActionState: ActionState = {
+  success: false,
+  message: "",
+};

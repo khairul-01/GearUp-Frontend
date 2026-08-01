@@ -1,6 +1,6 @@
 "use server";
 
-import { ROUTES } from "@/constants";
+import { ROUTES, USER_ROLE } from "@/constants";
 import { saveAuthCookies } from "@/lib/cookies";
 import { loginSchema } from "@/schemas/auth.schema";
 import { authService } from "@/services/auth.service";
@@ -92,14 +92,17 @@ export async function loginAction(
     const role = response.data.user.role;
 
     switch (role) {
-      case "CUSTOMER":
+      case USER_ROLE.CUSTOMER:
         redirect(ROUTES.DASHBOARD.CUSTOMER);
 
-      case "PROVIDER":
+      case USER_ROLE.PROVIDER:
         redirect(ROUTES.DASHBOARD.PROVIDER);
 
-      default:
+      case USER_ROLE.ADMIN:
         redirect(ROUTES.DASHBOARD.ADMIN);
+
+      default:
+        redirect(ROUTES.LOGIN);
     }
   } catch (error) {
     return {
