@@ -11,6 +11,8 @@ export interface ApiError {
   success: boolean;
   statusCode: number;
   message: string;
-  errorDetails?: string;
+  errorDetails?:
+    | string
+    | Record<string, string[]>;
   name?: string;
 }
