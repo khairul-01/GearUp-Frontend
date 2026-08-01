@@ -1,5 +1,6 @@
 // lib/api-client.ts
 
+import { COOKIES } from "@/constants";
 import { cookies } from "next/headers";
 
 const BASE_URL = process.env.BACKEND_API_URL!;
@@ -29,7 +30,7 @@ export async function apiClient<T>(
     const cookieStore = await cookies();
 
     const token = cookieStore
-      .get("accessToken")
+      .get(COOKIES.ACCESS_TOKEN)
       ?.value;
 
     if (token) {

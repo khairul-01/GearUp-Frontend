@@ -3,6 +3,7 @@
 import { ROUTES } from "@/constants";
 import { registerSchema } from "@/schemas/auth.schema";
 import { authService } from "@/services/auth.service";
+import { RegisterPayload } from "@/types";
 import { ActionState } from "@/types/action";
 import { redirect } from "next/navigation";
 
@@ -10,20 +11,29 @@ export async function registerAction(
   prevState: ActionState,
   formData: FormData
 ): Promise<ActionState> {
-  const values = {
+  const values: RegisterPayload = {
     name: String(formData.get("name")),
+
     email: String(formData.get("email")),
+
     phone: String(formData.get("phone")),
+
     password: String(formData.get("password")),
-    role: String(formData.get("role")),
+
+    role: formData.get("role") as
+      | "CUSTOMER"
+      | "PROVIDER",
   };
 
-  const validated = registerSchema.safeParse(values);
+  const validated =
+    registerSchema.safeParse(values);
 
   if (!validated.success) {
     return {
       success: false,
-      message: "Validation failed.",
+
+      message: "Validation Failed",
+
       errorDetails:
         validated.error.flatten().fieldErrors,
     };
@@ -31,15 +41,16 @@ export async function registerAction(
 
   try {
     await authService.register(validated.data);
-
-    redirect(ROUTES.LOGIN);
   } catch (error) {
     return {
       success: false,
+
       message:
         error instanceof Error
           ? error.message
-          : "Registration failed.",
+          : "Registration Failed",
     };
   }
+
+  redirect(ROUTES.LOGIN);
 }
