@@ -23,12 +23,12 @@ export const authService = {
     );
   },
 
-  getCurrentUser(token: string) {
+  me() {
     return apiClient<ApiResponse<User>>(
       API_ENDPOINTS.AUTH.ME,
       {
         method: "GET",
-        token,
+        requireAuth: true,
       }
     );
   },
