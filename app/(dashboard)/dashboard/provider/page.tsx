@@ -1,9 +1,9 @@
-import React from 'react'
-
-export default function ProviderDashboard() {
+export default function ProviderDashboardPage() {
   return (
     <div>
-      <h1>Provider Dashboard</h1>
+      <h1 className="text-3xl font-bold">
+        Provider Dashboard
+      </h1>
     </div>
-  )
+  );
 }

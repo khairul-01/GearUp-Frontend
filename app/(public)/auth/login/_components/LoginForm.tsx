@@ -11,31 +11,25 @@ import Link from "next/link";
 import { Label } from "@/components/ui/label";
 
 export default function LoginForm() {
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
 
   const [state, formAction, pending] = useActionState(
     loginAction,
-    initialLoginActionState
+    initialLoginActionState,
   );
 
   return (
     <form action={formAction} className="space-y-6">
       {state.message && !state.success && (
         <Alert variant="destructive">
-          <AlertDescription>
-            {state.message}
-          </AlertDescription>
+          <AlertDescription>{state.message}</AlertDescription>
         </Alert>
       )}
 
       <div className="space-y-2">
         <Label>Email</Label>
 
-        <Input
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-        />
+        <Input type="email" name="email" placeholder="Enter your email" />
 
         {state.errorDetails?.email && (
           <p className="text-sm text-destructive">
@@ -49,24 +43,23 @@ export default function LoginForm() {
 
         <div className="relative">
           <Input
-            type={showPassword ? "text" : "password"}
+            type="password"
             name="password"
             placeholder="Enter your password"
+            className="pr-10"
           />
 
-          <button
+          {/* <button
             type="button"
-            className="absolute right-3 top-3"
-            onClick={() =>
-              setShowPassword(!showPassword)
-            }
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute inset-y-0 right-3 flex items-center text-muted-foreground hover:text-foreground"
           >
             {showPassword ? (
-              <EyeOff size={18} />
+              <EyeOff className="h-4 w-4" />
             ) : (
-              <Eye size={18} />
+              <Eye className="h-4 w-4" />
             )}
-          </button>
+          </button> */}
         </div>
 
         {state.errorDetails?.password && (
@@ -76,10 +69,7 @@ export default function LoginForm() {
         )}
       </div>
 
-      <Button
-        className="w-full"
-        disabled={pending}
-      >
+      <Button className="w-full" disabled={pending}>
         {pending ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />

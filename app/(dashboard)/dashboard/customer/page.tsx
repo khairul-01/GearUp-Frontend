@@ -1,9 +1,9 @@
-import React from 'react'
-
-export default function CustomerDashboard() {
+export default function CustomerDashboardPage() {
   return (
     <div>
-      <h1>Customer Dashboard</h1>
+      <h1 className="text-3xl font-bold">
+        Customer Dashboard
+      </h1>
     </div>
-  )
+  );
 }
