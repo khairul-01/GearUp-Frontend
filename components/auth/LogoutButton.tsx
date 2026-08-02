@@ -1,3 +1,5 @@
+"use client";
+
 import { useTransition } from "react";
 import { Button } from "../ui/button";
 import { logoutAction } from "@/app/_action/logout.action";
