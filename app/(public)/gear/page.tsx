@@ -1,5 +1,6 @@
 import { getGearAction } from "./_actions/get-gear.action";
 import GearGrid from "./_components/GearGrid";
+import GearToolbar from "./_components/GearToolbar";
 import { GearSearchParams } from "./_types/search-params";
 
 export default async function GearPage({
@@ -8,7 +9,7 @@ export default async function GearPage({
   searchParams: Promise<GearSearchParams>;
 }) {
   const params = await searchParams;
-  
+
   const gears = await getGearAction(params);
 
   return (
@@ -18,6 +19,8 @@ export default async function GearPage({
 
         <p className="text-muted-foreground">Find your next adventure.</p>
       </div>
+
+      <GearToolbar />
 
       <GearGrid gears={gears} />
     </section>
