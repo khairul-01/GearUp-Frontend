@@ -3,9 +3,7 @@ import { apiClient } from "@/lib/api-client";
 import { ApiResponse, Category } from "@/types";
 
 export const categoryService = {
-  getCategories() {
-    return apiClient<ApiResponse<Category[]>>(
-      API_ENDPOINTS.CATEGORY.GET_ALL
-    );
+  async getAll() {
+    return apiClient<ApiResponse<Category[]>>(API_ENDPOINTS.CATEGORY.GET_ALL);
   },
 };
