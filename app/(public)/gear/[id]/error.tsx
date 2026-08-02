@@ -9,13 +9,13 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <div className="flex flex-col items-center gap-4 py-20">
-      <h2 className="text-2xl font-semibold">
-        Failed to load gear
+    <div className="py-24 text-center">
+      <h2 className="mb-6 text-2xl font-semibold">
+        Failed to load gear.
       </h2>
 
       <Button onClick={reset}>
-        Retry
+        Try Again
       </Button>
     </div>
   );
