@@ -42,6 +42,19 @@
 //                 "payment": null
 //             },
 
+// CreateRentalPayload
+// {
+//   "gearItemId": "61b0c58a-08ef-4e6a-9e1a-8da92ffb8d8e",
+//   "quantity": 2,
+//   "rentalStartDate": "2026-08-01",
+//   "rentalEndDate": "2026-08-05"
+// }
+
+// update order status
+// {
+//   "status": "RETURNED"
+// }
+
 // types/rental.ts
 
 import { Gear } from "./gear";
@@ -70,14 +83,6 @@ export interface Rental {
   provider: User;
 }
 
-// CreateRentalPayload
-// {
-//   "gearItemId": "61b0c58a-08ef-4e6a-9e1a-8da92ffb8d8e",
-//   "quantity": 2,
-//   "rentalStartDate": "2026-08-01",
-//   "rentalEndDate": "2026-08-05"
-// }
-
 export interface CreateRentalPayload {
   gearItemId: string;
   quantity: number;
@@ -85,10 +90,6 @@ export interface CreateRentalPayload {
   rentalEndDate: string; // ISO date string
 }
 
-// update order status
-// {
-//   "status": "RETURNED"
-// }
 export interface UpdateRentalStatusPayload {
   status:
     | "PLACED"

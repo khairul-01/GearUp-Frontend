@@ -49,6 +49,11 @@
 //             }
 //         },
 
+// CreatePaymentPayload
+// {
+//   "rentalOrderId": "2d67a5f0-f268-4b22-920c-b2a4c9c1869c"
+// }
+
 // types/payment.ts
 
 import { Rental } from "./rental";
@@ -68,11 +73,6 @@ export interface Payment {
     updatedAt: string;
     rentalOrder: Rental;
 }
-
-// CreatePaymentPayload
-// {
-//   "rentalOrderId": "2d67a5f0-f268-4b22-920c-b2a4c9c1869c"
-// }
 
 export interface CreatePaymentPayload {
     rentalOrderId: string;
