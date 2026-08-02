@@ -15,15 +15,17 @@ export default function DashboardHeader({
         </h1>
       </div>
 
-      <div className="text-right">
-        <p className="font-medium">
-          {user.name}
-        </p>
+      <div className="flex items-center gap-4">
+    <div className="text-right">
+      <p className="font-medium">{user?.name}</p>
 
-        <p className="text-sm text-muted-foreground">
-          {user.email}
-        </p>
-      </div>
+      <p className="text-sm text-muted-foreground">
+        {user?.email}
+      </p>
+    </div>
+
+    {/* <LogoutButton /> */}
+  </div>
     </header>
   );
 }

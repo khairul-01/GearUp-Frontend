@@ -1,7 +1,18 @@
 import { USER_ROLE } from "@/constants";
-import { Boxes, CreditCard, LayoutDashboard, Package, ShoppingBag, Users } from "lucide-react";
+import { Boxes, CreditCard, LayoutDashboard, PackagePlus, ShoppingBag, Users } from "lucide-react";
 
-export const dashboardLinks = {
+export interface DashboardLink {
+  title: string;
+  href: string;
+  icon: React.ComponentType<{
+    className?: string;
+  }>;
+}
+
+export const dashboardLinks: Record<
+  string,
+  DashboardLink[]
+> = {
   [USER_ROLE.CUSTOMER]: [
     {
       title: "Dashboard",
@@ -9,7 +20,7 @@ export const dashboardLinks = {
       icon: LayoutDashboard,
     },
     {
-      title: "Orders",
+      title: "My Orders",
       href: "/dashboard/customer/orders",
       icon: ShoppingBag,
     },
@@ -29,7 +40,7 @@ export const dashboardLinks = {
     {
       title: "My Gear",
       href: "/dashboard/provider/gear",
-      icon: Package,
+      icon: PackagePlus,
     },
     {
       title: "Orders",

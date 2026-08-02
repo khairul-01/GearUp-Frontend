@@ -95,7 +95,7 @@ export default function RegisterForm() {
           <Input
             type="password"
             name="password"
-            placeholder="********"
+            placeholder="Create a password"
           />
 
           {/* <button
