@@ -10,20 +10,17 @@ interface Props {
   children: ReactNode;
 }
 
-export default function DashboardShell({
-  user,
-  children,
-}: Props) {
+export default function DashboardShell({ user, children }: Props) {
   return (
     <div className="flex min-h-screen bg-muted/30">
-      <DashboardSidebar user={user} />
+      <div className="hidden lg:block">
+        <DashboardSidebar user={user} />
+      </div>
 
       <div className="flex flex-1 flex-col">
         <DashboardHeader user={user} />
 
-        <main className="flex-1 p-6">
-          {children}
-        </main>
+        <main className="flex-1 p-6">{children}</main>
       </div>
     </div>
   );

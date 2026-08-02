@@ -11,7 +11,7 @@ export default function DashboardSidebar({
   user,
 }: Props) {
   return (
-    <aside className="hidden w-72 border-r bg-background lg:flex lg:flex-col">
+    <aside className="flex h-full w-72 flex-col border-r bg-background">
       <DashboardLogo />
 
       <DashboardNav role={user.role} />
