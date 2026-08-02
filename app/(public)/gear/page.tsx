@@ -1,7 +1,8 @@
-import AppPagination from "@/components/shared/AppPagination";
 import { getGearAction } from "./_actions/get-gear.action";
-import GearGrid from "./_components/GearGrid";
 import GearToolbar from "./_components/GearToolbar";
+import GearGrid from "./_components/GearGrid";
+import AppPagination from "@/components/shared/AppPagination";
+
 import { GearSearchParams } from "./_types/search-params";
 
 export default async function GearPage({
@@ -13,27 +14,29 @@ export default async function GearPage({
 
   const response = await getGearAction(params);
 
-  const gears = response.data;
-
-  const meta = response.meta;
-
   return (
-    <section className="container py-10">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold">Browse Gear</h1>
+    <>
+      <section className="mb-8">
+        <h1 className="text-4xl font-bold">
+          Browse Gear
+        </h1>
 
-        <p className="text-muted-foreground">Find your next adventure.</p>
-      </div>
+        <p className="mt-2 text-muted-foreground">
+          Find the perfect sports and outdoor gear.
+        </p>
+      </section>
 
       <GearToolbar />
 
-      <GearGrid gears={gears} />
+      <GearGrid gears={response.data} />
 
-      <AppPagination
-        page={meta.page}
-        limit={meta.limit}
-        total={meta.total}
-      />
-    </section>
+      {response.meta && (
+        <AppPagination
+          page={response.meta.page}
+          limit={response.meta.limit}
+          total={response.meta.total}
+        />
+      )}
+    </>
   );
 }
