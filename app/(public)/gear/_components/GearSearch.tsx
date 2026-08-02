@@ -7,12 +7,11 @@ import { Input } from "@/components/ui/input";
 import { useDebounce } from "@/hooks/use-debounce";
 
 export default function GearSearch() {
-  const { searchParams, update } =
-    useUpdateSearchParams();
+  const { searchParams, update } = useUpdateSearchParams();
 
-  const [value, setValue] = useState(
-    searchParams.get("search") ?? ""
-  );
+  const search = searchParams.get("search") ?? "";
+
+  const [value, setValue] = useState(search);
 
   const debounced = useDebounce(value);
 

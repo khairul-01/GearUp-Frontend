@@ -7,10 +7,15 @@ export async function getGearAction(
   params?: GearSearchParams
 ) {
   try {
-    const response = await gearService.getAll(params);
-
-    return response.data;
+    return await gearService.getAll(params);
   } catch {
-    return [];
+    return {
+      data: [],
+      meta: {
+        page: 1,
+        limit: 12,
+        total: 0,
+      },
+    };
   }
 }

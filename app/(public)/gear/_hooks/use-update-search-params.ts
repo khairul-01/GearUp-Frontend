@@ -17,13 +17,20 @@ export function useUpdateSearchParams() {
       searchParams.toString()
     );
 
+    const current =
+      params.get(key) ?? "";
+
+    if (current === value) {
+      return;
+    }
+
     if (!value) {
       params.delete(key);
     } else {
       params.set(key, value);
     }
 
-    router.push(
+    router.replace(
       `${pathname}?${params.toString()}`
     );
   }

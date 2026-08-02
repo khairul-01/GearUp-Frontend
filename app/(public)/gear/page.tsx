@@ -1,3 +1,4 @@
+import AppPagination from "@/components/shared/AppPagination";
 import { getGearAction } from "./_actions/get-gear.action";
 import GearGrid from "./_components/GearGrid";
 import GearToolbar from "./_components/GearToolbar";
@@ -10,7 +11,11 @@ export default async function GearPage({
 }) {
   const params = await searchParams;
 
-  const gears = await getGearAction(params);
+  const response = await getGearAction(params);
+
+  const gears = response.data;
+
+  const meta = response.meta;
 
   return (
     <section className="container py-10">
@@ -23,6 +28,12 @@ export default async function GearPage({
       <GearToolbar />
 
       <GearGrid gears={gears} />
+
+      <AppPagination
+        page={meta.page}
+        limit={meta.limit}
+        total={meta.total}
+      />
     </section>
   );
 }

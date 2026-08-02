@@ -2,7 +2,7 @@ import { GearSearchParams } from "@/app/(public)/gear/_types/search-params";
 import { API_ENDPOINTS } from "@/constants";
 import { apiClient } from "@/lib/api-client";
 import { ApiResponse, Gear } from "@/types";
-import { Key } from "lucide-react";
+import { PaginatedResponse } from "@/types/pagination";
 
 export const gearService = {
   async getAll(params?: GearSearchParams) {
@@ -17,7 +17,7 @@ export const gearService = {
     const url =
       `${API_ENDPOINTS.GEAR.GET_ALL}?${query.toString()}`;
 
-    return apiClient<ApiResponse<Gear[]>>(url);
+    return apiClient<PaginatedResponse<Gear>>(url);
   },
 
   async getById(id: string) {
