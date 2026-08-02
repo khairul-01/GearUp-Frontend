@@ -31,9 +31,7 @@ export async function registerAction(
   if (!validated.success) {
     return {
       success: false,
-
       message: "Validation Failed",
-
       errorDetails:
         validated.error.flatten().fieldErrors,
     };

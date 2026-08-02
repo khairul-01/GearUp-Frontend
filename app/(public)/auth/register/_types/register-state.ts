@@ -1,14 +1,6 @@
-import { User } from "@/types";
+import { ActionState } from "@/types/action";
 
-export interface RegisterActionState {
-  success: boolean;
-  message: string;
-  data?: User;
-  errorDetails?: Record<string, string[]>;
-}
-
-export const initialRegisterActionState: RegisterActionState =
-{
+export const initialRegisterActionState: ActionState = {
   success: false,
   message: "",
 };
