@@ -3,37 +3,33 @@ import { apiClient } from "@/lib/api-client";
 import { ApiResponse, CreateRentalPayload, Rental } from "@/types";
 
 export const rentalService = {
-  createRental(
-    payload: CreateRentalPayload,
-    token: string
-  ) {
+  create(payload: CreateRentalPayload) {
     return apiClient<ApiResponse<Rental>>(
       API_ENDPOINTS.RENTAL.CREATE,
       {
         method: "POST",
+
+        requireAuth: true,
+
         body: JSON.stringify(payload),
-        token,
       }
     );
   },
 
-  getRentals(token: string) {
+  getAll() {
     return apiClient<ApiResponse<Rental[]>>(
       API_ENDPOINTS.RENTAL.GET_ALL,
       {
-        token,
+        requireAuth: true,
       }
     );
   },
 
-  getRentalById(
-    id: string,
-    token: string
-  ) {
+  getById(id: string) {
     return apiClient<ApiResponse<Rental>>(
       API_ENDPOINTS.RENTAL.GET_BY_ID(id),
       {
-        token,
+        requireAuth: true,
       }
     );
   },

@@ -3,6 +3,7 @@ import { getGearByIdAction } from "./_actions/get-gear-action";
 import GearGallery from "./_components/GearGallery";
 import GearInfo from "./_components/GearInfo";
 import ProviderCard from "./_components/ProviderCard";
+import RentCard from "./_components/RentCard";
 
 export default async function GearDetails({
   params,
@@ -13,8 +14,7 @@ export default async function GearDetails({
 }) {
   const { id } = await params;
 
-  const response =
-    await getGearByIdAction(id);
+  const response = await getGearByIdAction(id);
 
   if (!response) {
     notFound();
@@ -24,18 +24,25 @@ export default async function GearDetails({
 
   return (
     <div className="space-y-10">
-      <section className="grid gap-10 lg:grid-cols-2">
-        <GearGallery
-          image={gear.imageUrl}
-          name={gear.name}
-        />
+      <section className="grid gap-10 lg:grid-cols-3">
+        <div className="lg:col-span-2 space-y-10">
+          <GearGallery image={gear.imageUrl} name={gear.name} />
 
-        <GearInfo gear={gear} />
+          <GearInfo gear={gear} />
+
+          <ProviderCard provider={gear.provider} />
+        </div>
+
+        <aside>
+          <RentCard
+            gearId={gear.id}
+            pricePerDay={gear.rentalPricePerDay}
+            availableQuantity={gear.availableQuantity}
+          />
+        </aside>
       </section>
 
-      <ProviderCard
-        provider={gear.provider}
-      />
+      {/* <ProviderCard provider={gear.provider} /> */}
     </div>
   );
 }
