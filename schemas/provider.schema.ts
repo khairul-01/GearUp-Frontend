@@ -23,5 +23,8 @@ export const gearSchema = z.object({
     .int()
     .positive(),
 
-  imageUrl: z.string().url().optional(),
+  imageUrl: z.preprocess(
+  (value) => (value === "" ? undefined : value),
+  z.string().url().optional()
+)
 });

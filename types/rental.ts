@@ -80,6 +80,7 @@ export interface Rental {
   createdAt: string;
 
   updatedAt: string;
+  customer: User;
   gearItem: Gear;
   provider: User;
 }

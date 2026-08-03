@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 
 import { Loader2 } from "lucide-react";
 
@@ -43,6 +43,10 @@ export default function GearForm({
   submitText = "Save",
 }: Props) {
   const [state, formAction, pending] = useActionState(action, initialState);
+
+  const [categoryId, setCategoryId] = useState(defaultValues?.categoryId ?? "");
+
+  const [condition, setCondition] = useState(defaultValues?.condition ?? "NEW");
 
   return (
     <form action={formAction} className="space-y-6">
@@ -110,7 +114,10 @@ export default function GearForm({
         <div>
           <Label>Condition</Label>
 
-          <Select name="condition" defaultValue={defaultValues?.condition}>
+          <Select
+            value={condition}
+            onValueChange={(value) => setCondition(value as "NEW" | "USED")}
+          >
             <SelectTrigger>
               <SelectValue />
             </SelectTrigger>
@@ -121,14 +128,16 @@ export default function GearForm({
               <SelectItem value="USED">USED</SelectItem>
             </SelectContent>
           </Select>
+
+          <input type="hidden" name="condition" value={condition} />
         </div>
 
         <div>
           <Label>Category</Label>
 
-          <Select name="categoryId" defaultValue={defaultValues?.categoryId}>
+          <Select value={categoryId} onValueChange={setCategoryId}>
             <SelectTrigger>
-              <SelectValue />
+              <SelectValue placeholder="Select Category" />
             </SelectTrigger>
 
             <SelectContent>
@@ -139,6 +148,8 @@ export default function GearForm({
               ))}
             </SelectContent>
           </Select>
+
+          <input type="hidden" name="categoryId" value={categoryId} />
         </div>
       </div>
 
