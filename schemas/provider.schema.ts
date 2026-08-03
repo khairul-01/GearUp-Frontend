@@ -1,0 +1,27 @@
+import { z } from "zod";
+
+export const gearSchema = z.object({
+  categoryId: z.string().min(1),
+
+  name: z.string().min(2),
+
+  description: z.string().min(10),
+
+  brand: z.string().min(2),
+
+  condition: z.enum([
+    "NEW",
+    "USED",
+  ]),
+
+  rentalPricePerDay: z.coerce
+    .number()
+    .positive(),
+
+  quantity: z.coerce
+    .number()
+    .int()
+    .positive(),
+
+  imageUrl: z.string().url().optional(),
+});

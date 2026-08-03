@@ -57,6 +57,7 @@
 
 // types/rental.ts
 
+import { ActionState } from "./action";
 import { Gear } from "./gear";
 import { User } from "./user";
 
@@ -99,3 +100,7 @@ export interface UpdateRentalStatusPayload {
     | "RETURNED"
     | "CANCELLED";
 }
+
+export type CreateRentalResponse = Rental;
+
+export type RentalActionState = ActionState<Rental>;

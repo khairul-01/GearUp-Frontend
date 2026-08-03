@@ -2,12 +2,13 @@
 
 import { rentalSchema } from "@/schemas/rental.schema";
 import { rentalService } from "@/services/rental.service";
+import { Rental } from "@/types";
 import { ActionState } from "@/types/action";
 
 export async function createRentalAction(
   _: ActionState,
   formData: FormData
-): Promise<ActionState> {
+): Promise<ActionState<Rental>> {
   const payload = {
     gearItemId: String(
       formData.get("gearItemId")
@@ -46,6 +47,7 @@ export async function createRentalAction(
       await rentalService.create(
         validated.data
       );
+      console.log(response, "current rental action response")
 
     return {
       success: true,
@@ -65,3 +67,4 @@ export async function createRentalAction(
     };
   }
 }
+

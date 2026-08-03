@@ -23,26 +23,41 @@ export default async function GearDetails({
   const gear = response.data;
 
   return (
-    <div className="space-y-10">
-      <section className="grid gap-10 lg:grid-cols-3">
-        <div className="lg:col-span-2 space-y-10">
-          <GearGallery image={gear.imageUrl} name={gear.name} />
+    // <div className="space-y-10">
+    //   <section className="grid gap-10 lg:grid-cols-3">
+    //     <div className="lg:col-span-2 space-y-10">
+    //       <GearGallery image={gear.imageUrl} name={gear.name} />
 
-          <GearInfo gear={gear} />
+    //       <GearInfo gear={gear} />
 
-          <ProviderCard provider={gear.provider} />
-        </div>
+    //       <ProviderCard provider={gear.provider} />
+    //     </div>
 
-        <aside>
-          <RentCard
-            gearId={gear.id}
-            pricePerDay={gear.rentalPricePerDay}
-            availableQuantity={gear.availableQuantity}
-          />
-        </aside>
-      </section>
+    //     <aside>
+    //       <RentCard
+    //         gearId={gear.id}
+    //         rentalPricePerDay={gear.rentalPricePerDay}
+    //         availableQuantity={gear.availableQuantity}
+    //       />
+    //     </aside>
+    //   </section>
 
-      {/* <ProviderCard provider={gear.provider} /> */}
+    //   {/* <ProviderCard provider={gear.provider} /> */}
+    // </div>
+    <div className="grid gap-10 lg:grid-cols-3">
+      <div className="space-y-8 lg:col-span-2">
+        <GearGallery image={gear.imageUrl} name={gear.name} />
+
+        <GearInfo gear={gear} />
+
+        <ProviderCard provider={gear.provider} />
+      </div>
+
+      <RentCard
+        gearId={gear.id}
+        rentalPricePerDay={gear.rentalPricePerDay}
+        availableQuantity={gear.availableQuantity}
+      />
     </div>
   );
 }

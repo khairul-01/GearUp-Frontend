@@ -11,52 +11,37 @@ type ApiClientOptions = RequestInit & {
 
 export async function apiClient<T>(
   endpoint: string,
-  options: ApiClientOptions = {}
+  options: ApiClientOptions = {},
 ): Promise<T> {
-  const {
-    requireAuth = false,
-    headers,
-    ...rest
-  } = options;
+  const { requireAuth = false, headers, ...rest } = options;
 
   const requestHeaders = new Headers(headers);
 
-  requestHeaders.set(
-    "Content-Type",
-    "application/json"
-  );
+  requestHeaders.set("Content-Type", "application/json");
 
   if (requireAuth) {
     const cookieStore = await cookies();
 
-    const token = cookieStore
-      .get(COOKIES.ACCESS_TOKEN)
-      ?.value;
+    const token = cookieStore.get(COOKIES.ACCESS_TOKEN)?.value;
 
     if (token) {
-      requestHeaders.set(
-        "Authorization",
-        `Bearer ${token}`
-      );
+      requestHeaders.set("Authorization", `Bearer ${token}`);
     }
   }
 
-  const response = await fetch(
-    `${BASE_URL}${endpoint}`,
-    {
-      ...rest,
-      cache: "no-store",
-      headers: requestHeaders,
-    }
-  );
+  const url = `${BASE_URL}${endpoint}`;
+  console.log("Fetching:", url);
+
+  const response = await fetch(`${BASE_URL}${endpoint}`, {
+    ...rest,
+    cache: "no-store",
+    headers: requestHeaders,
+  });
 
   const result = await response.json();
 
   if (!response.ok) {
-    throw new Error(
-      result?.message ??
-        "Unexpected server error."
-    );
+    throw new Error(result?.message ?? "Unexpected server error.");
   }
 
   return result;

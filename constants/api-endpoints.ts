@@ -36,6 +36,8 @@ export const API_ENDPOINTS = {
 
   PROVIDER: {
     CREATE_GEAR: "/api/provider/gear",
+    // get gear
+    GET_MY_GEAR: "/api/provider/gear",
 
     UPDATE_GEAR: (id: string) =>
       `/api/provider/gear/${id}`,

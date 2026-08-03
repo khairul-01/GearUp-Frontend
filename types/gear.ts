@@ -98,6 +98,7 @@ export interface CreateGearPayload {
     condition: "NEW" | "USED";
     rentalPricePerDay: number;
     quantity: number;
+    imageUrl?: string;
 }
 
 // UpdateGearPayload
@@ -109,5 +110,7 @@ export interface UpdateGearPayload {
     condition?: "NEW" | "USED";
     rentalPricePerDay?: number;
     quantity?: number;
+    availableQuantity?: number;
     isAvailable?: boolean;
+    imageUrl?: string;
 }
