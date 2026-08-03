@@ -13,7 +13,7 @@ export const API_ENDPOINTS = {
   },
 
   CATEGORY: {
-    GET_ALL: "/api/categories",
+    GET_ALL: "/api/gear/categories",
     CREATE: "/api/admin/categories",
   },
 
