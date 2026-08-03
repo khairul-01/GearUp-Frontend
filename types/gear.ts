@@ -47,6 +47,18 @@
 //     }
 
 
+// CreateGearPayload
+// {
+//   "categoryId": "d2550c09-3faf-462e-8d98-6816f904f006",
+//   "name": "5 Person Camping Tent",
+//   "description": "Waterproof 5 family camping tent with ventilation windows.",
+//   "brand": "Coleman",
+//   "condition": "NEW",
+//   "rentalPricePerDay": 350,
+//   "quantity": 10
+// }
+
+
 // types/gear.ts
 
 import { Category } from "./category";
@@ -63,7 +75,7 @@ export interface Gear {
     rentalPricePerDay: number;
     quantity: number;
     availableQuantity: number;
-    imageUrl: string | null;
+    imageUrl: string;
     isAvailable: boolean;
     createdAt: string;
     updatedAt: string;
@@ -79,16 +91,6 @@ export interface Gear {
     averageRating: number;
 }
 
-// CreateGearPayload
-// {
-//   "categoryId": "d2550c09-3faf-462e-8d98-6816f904f006",
-//   "name": "5 Person Camping Tent",
-//   "description": "Waterproof 5 family camping tent with ventilation windows.",
-//   "brand": "Coleman",
-//   "condition": "NEW",
-//   "rentalPricePerDay": 350,
-//   "quantity": 10
-// }
 
 export interface CreateGearPayload {
     categoryId: string;
@@ -99,11 +101,13 @@ export interface CreateGearPayload {
     rentalPricePerDay: number;
     quantity: number;
     imageUrl?: string;
+    availableQuantity?: number;
 }
 
 // UpdateGearPayload
 
 export interface UpdateGearPayload {
+    categoryId?: string;
     name?: string;
     description?: string;
     brand?: string;

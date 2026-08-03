@@ -20,20 +20,28 @@ import {
 
 import { Category, CreateGearPayload } from "@/types";
 import { ActionState } from "@/types/action";
+import { Textarea } from "@/components/ui/textarea";
 
 const initialState: ActionState = {
   success: false,
   message: "",
 };
 
+type GearFormValues = Partial<CreateGearPayload> & {
+  id?: string;
+  availableQuantity?: number;
+};
+
 interface Props {
   categories: Category[];
 
-  defaultValues?: Partial<CreateGearPayload>;
+  defaultValues?: GearFormValues;
 
   action: (state: ActionState, formData: FormData) => Promise<ActionState>;
 
   submitText?: string;
+
+  onSuccess?: () => void;
 }
 
 export default function GearForm({
@@ -50,8 +58,13 @@ export default function GearForm({
 
   return (
     <form action={formAction} className="space-y-6">
+
       {!state.success && state.message && (
         <p className="text-red-500">{state.message}</p>
+      )}
+
+      {defaultValues?.id && (
+        <input type="hidden" name="id" value={defaultValues.id} />
       )}
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -75,10 +88,9 @@ export default function GearForm({
       <div>
         <Label>Description</Label>
 
-        <textarea
+        <Textarea
           name="description"
           defaultValue={defaultValues?.description}
-          className="min-h-36 w-full rounded-md border p-3"
         />
       </div>
 
@@ -108,6 +120,16 @@ export default function GearForm({
             type="number"
             name="quantity"
             defaultValue={defaultValues?.quantity}
+          />
+        </div>
+
+        <div>
+          <Label>Available Quantity</Label>
+
+          <Input
+            type="number"
+            name="availableQuantity"
+            defaultValue={defaultValues?.availableQuantity}
           />
         </div>
 
