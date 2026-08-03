@@ -1,60 +1,69 @@
-import { API_ENDPOINTS } from "@/constants";
 import { apiClient } from "@/lib/api-client";
-import { UpdateUserPayload } from "@/types";
+import { API_ENDPOINTS } from "@/constants";
+import {
+  ApiResponse,
+  User,
+  Gear,
+  Rental,
+  Category,
+} from "@/types";
 
 export const adminService = {
-  getUsers(token: string) {
-    return apiClient(
+  getUsers() {
+    return apiClient<ApiResponse<User[]>>(
       API_ENDPOINTS.ADMIN.GET_USERS,
       {
-        token,
+        method: "GET",
+        requireAuth: true,
       }
     );
   },
 
-  updateUser(
-    id: string,
-    payload: UpdateUserPayload,
-    token: string
+  // update user status
+  updateUserStatus(
+    userId: string,
+    status: "ACTIVE" | "INACTIVE"
   ) {
-    return apiClient(
-      API_ENDPOINTS.ADMIN.UPDATE_USER(id),
+    return apiClient<ApiResponse<User>>(
+      API_ENDPOINTS.ADMIN.UPDATE_USER(userId),
       {
         method: "PATCH",
-        body: JSON.stringify(payload),
-        token,
+        requireAuth: true,
+        body: JSON.stringify({ status }),
       }
     );
   },
 
-  getGear(token: string) {
-    return apiClient(
+  getGear() {
+    return apiClient<ApiResponse<Gear[]>>(
       API_ENDPOINTS.ADMIN.GET_GEAR,
       {
-        token,
+        method: "GET",
+        requireAuth: true,
       }
     );
   },
 
-  getRentals(token: string) {
-    return apiClient(
+  getRentals() {
+    return apiClient<ApiResponse<Rental[]>>(
       API_ENDPOINTS.ADMIN.GET_RENTALS,
       {
-        token,
+        method: "GET",
+        requireAuth: true,
       }
     );
   },
 
-  createCategory(
-    payload: { name: string },
-    token: string
-  ) {
-    return apiClient(
+  createCategory(data: {
+    name: string;
+    description: string;
+  }) {
+    return apiClient<ApiResponse<Category>>(
       API_ENDPOINTS.ADMIN.CREATE_CATEGORY,
       {
         method: "POST",
-        body: JSON.stringify(payload),
-        token,
+        requireAuth: true,
+        body: JSON.stringify(data),
       }
     );
   },

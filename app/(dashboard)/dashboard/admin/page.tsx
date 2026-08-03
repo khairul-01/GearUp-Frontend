@@ -1,8 +1,24 @@
-import StatCard from "@/components/dashboard/cards/StatCard";
+import { adminService } from "@/services/admin.service";
 import StatsGrid from "@/components/dashboard/cards/StatsGrid";
-import { Boxes, ShoppingBag, Users, Wallet } from "lucide-react";
+import StatCard from "@/components/dashboard/cards/StatCard";
 
-export default function AdminDashboardPage() {
+import {
+  Users,
+  Boxes,
+  ShoppingBag,
+} from "lucide-react";
+
+export default async function AdminDashboard() {
+  const [
+    users,
+    gear,
+    rentals,
+  ] = await Promise.all([
+    adminService.getUsers(),
+    adminService.getGear(),
+    adminService.getRentals(),
+  ]);
+
   return (
     <div className="space-y-8">
       <h1 className="text-3xl font-bold">
@@ -12,26 +28,20 @@ export default function AdminDashboardPage() {
       <StatsGrid>
         <StatCard
           title="Users"
-          value={0}
+          value={users.data.length}
           icon={Users}
         />
 
         <StatCard
           title="Gear"
-          value={0}
+          value={gear.data.length}
           icon={Boxes}
         />
 
         <StatCard
           title="Rentals"
-          value={0}
+          value={rentals.data.length}
           icon={ShoppingBag}
-        />
-
-        <StatCard
-          title="Revenue"
-          value="$0"
-          icon={Wallet}
         />
       </StatsGrid>
     </div>

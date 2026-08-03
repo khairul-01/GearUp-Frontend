@@ -70,5 +70,11 @@ export const dashboardLinks: Record<
       href: "/dashboard/admin/rentals",
       icon: ShoppingBag,
     },
+    // link for catergory management
+    {
+      title: "Categories",
+      href: "/dashboard/admin/categories",
+      icon: Boxes,
+    },
   ],
 };

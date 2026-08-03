@@ -3,19 +3,27 @@
 import { Button } from "@/components/ui/button";
 
 export default function Error({
+  error,
   reset,
 }: {
   error: Error;
   reset: () => void;
 }) {
   return (
-    <div className="flex flex-col items-center gap-4 py-20">
-      <h2 className="text-2xl font-semibold">
-        Failed to load gear
+    <div className="rounded-lg border border-destructive p-6">
+      <h2 className="text-xl font-bold">
+        Something went wrong
       </h2>
 
-      <Button onClick={reset}>
-        Retry
+      <p className="mt-2">
+        {error.message}
+      </p>
+
+      <Button
+        className="mt-4"
+        onClick={reset}
+      >
+        Try Again
       </Button>
     </div>
   );
