@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { logoutAction } from "@/app/_action/logout.action";
 
 interface Props {
   user: User;
@@ -51,9 +52,13 @@ export default function UserMenu({
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild>
-          <Link href="/logout">
+          {/* <Link href="/logout">
             Logout
-          </Link>
+          </Link> */}
+          {/* make logout with action */}
+          <form action={logoutAction} >
+            <button type="submit">Logout</button>
+          </form>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

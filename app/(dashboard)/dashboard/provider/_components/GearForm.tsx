@@ -141,7 +141,7 @@ export default function GearForm({
           />
         </div>
 
-        <div>
+        {/* <div>
           <Label>Available Quantity</Label>
 
           <Input
@@ -149,7 +149,7 @@ export default function GearForm({
             name="availableQuantity"
             defaultValue={defaultValues?.availableQuantity}
           />
-        </div>
+        </div> */}
 
         <div>
           <Label>Condition</Label>

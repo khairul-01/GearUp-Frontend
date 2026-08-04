@@ -64,6 +64,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { logoutAction } from "@/app/_action/logout.action";
 
 interface Props {
   user: User | null;
@@ -117,7 +118,11 @@ export default function MobileMenu({ user }: Props) {
 
                 <Link href="/profile">Profile</Link>
 
-                <Link href="/logout">Logout</Link>
+                {/* <Link href="/logout">Logout</Link> */}
+                {/* logout with logoutAction */}
+                <form action={logoutAction}>
+                  <button type="submit">Logout</button>
+                </form>
               </>
             ) : (
               <>

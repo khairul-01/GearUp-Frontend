@@ -67,9 +67,11 @@ export async function createPaymentAction(
     );
 
     const response =
-      await paymentService.create({
+      await paymentService.createPayment({
         rentalOrderId,
       });
+
+    console.log("Payment response:", response);
 
     return {
       success: true,

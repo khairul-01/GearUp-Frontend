@@ -1,13 +1,16 @@
+import { categoryService } from "@/services/category.service";
 import Link from "next/link";
 
-const categories = [
-  "Cycling",
-  "Camping",
-  "Fitness",
-  "Water Sports",
-];
+// const categories = [
+//   "Cycling",
+//   "Camping",
+//   "Fitness",
+//   "Water Sports",
+// ];
 
-export default function FeaturedCategories() {
+export default async function FeaturedCategories() {
+  // get categories from backend 
+  const categories = await categoryService.getAll();
   return (
     <section className="mx-auto max-w-7xl px-4">
       <div className="mb-10 text-center">
@@ -17,14 +20,14 @@ export default function FeaturedCategories() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {categories.map((category) => (
+        {categories.data.map((category) => (
           <Link
-            key={category}
-            href="/gear"
+            key={category.id}
+            href={`/gear?categoryId=${category.id}`}
             className="rounded-xl border p-10 text-center transition hover:border-primary"
           >
             <h3 className="text-xl font-semibold">
-              {category}
+              {category.name}
             </h3>
           </Link>
         ))}

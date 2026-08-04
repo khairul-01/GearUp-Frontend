@@ -16,7 +16,7 @@ export default async function ProviderDashboardPage() {
   ]);
 
   const gears = gearResponse.data;
-  const orders = orderResponse.data.data;
+  const orders = orderResponse.data;
   const categories = categoryResponse.data;
   // revenue
   // solve problem orders.reduce is not function

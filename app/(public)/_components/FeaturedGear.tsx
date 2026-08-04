@@ -16,7 +16,7 @@ export default async function FeaturedGear() {
         </h2>
       </div>
 
-      <GearGrid gears={response.data} />
+      <GearGrid gears={response.data.slice(0, 4)} />
     </section>
   );
 }

@@ -5,6 +5,8 @@ import { paymentService } from "@/services/payment.service";
 import { rentalService } from "@/services/rental.service";
 import { CreditCard, Package, ShoppingCart, Star } from "lucide-react";
 import CustomerRentalTable from "./_components/CustomerRentalTable";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function CustomerDashboardPage() {
   const [rentalsResponse, paymentsResponse] = await Promise.all([
@@ -72,9 +74,14 @@ export default async function CustomerDashboardPage() {
           description="Your rental history will appear here."
         />
       ) : (
-        <CustomerRentalTable rentals={rentals} />
+        <CustomerRentalTable rentals={rentals.slice(0, 5)} />
       )}
-      
+
+      <div className="flex justify-end">
+        <Button asChild>
+          <Link href="/dashboard/customer/orders">View All Orders</Link>
+        </Button>
+      </div>
     </div>
   );
 }

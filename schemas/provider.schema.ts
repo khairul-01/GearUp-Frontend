@@ -23,11 +23,12 @@ export const gearSchema = z.object({
     .int()
     .positive(),
 
-
+  // make availableQuantity optional and default to quantity
   availableQuantity: z.coerce
     .number()
     .int()
-    .nonnegative(),
+    .positive()
+    .optional(),
 
   imageUrl: z.preprocess(
   (value) => (value === "" ? undefined : value),
