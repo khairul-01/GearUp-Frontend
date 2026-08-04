@@ -1,9 +1,16 @@
+// services/payment.service.ts
+
 import { API_ENDPOINTS } from "@/constants";
 import { apiClient } from "@/lib/api-client";
-import { ApiResponse, CreatePaymentPayload, Payment } from "@/types";
+
+import {
+  ApiResponse,
+  Payment,
+  CreatePaymentPayload,
+} from "@/types";
 
 export const paymentService = {
-  create(payload: CreatePaymentPayload) {
+  createPayment(payload: CreatePaymentPayload) {
     return apiClient<ApiResponse<Payment>>(
       API_ENDPOINTS.PAYMENT.CREATE,
       {
@@ -14,7 +21,7 @@ export const paymentService = {
     );
   },
 
-  getAll() {
+  getMyPayments() {
     return apiClient<ApiResponse<Payment[]>>(
       API_ENDPOINTS.PAYMENT.GET_ALL,
       {
@@ -23,7 +30,7 @@ export const paymentService = {
     );
   },
 
-  getById(id: string) {
+  getPayment(id: string) {
     return apiClient<ApiResponse<Payment>>(
       API_ENDPOINTS.PAYMENT.GET_BY_ID(id),
       {
