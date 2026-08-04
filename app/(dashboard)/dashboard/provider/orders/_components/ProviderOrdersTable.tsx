@@ -1,6 +1,6 @@
 import { Rental } from "@/types";
 import OrderStatusBadge from "./OderStatusBadge";
-import UpdateOrderStatus from "./UpdateOrderStatus";
+import OrderStatusForm from "./OrderStatusForm";
 
 interface Props {
   orders: Rental[];
@@ -99,7 +99,7 @@ export default function ProviderOrdersTable({
               </td>
 
               <td>
-                <UpdateOrderStatus
+                <OrderStatusForm
                   order={order}
                 />
               </td>

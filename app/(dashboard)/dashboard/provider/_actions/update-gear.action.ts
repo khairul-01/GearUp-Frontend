@@ -11,17 +11,25 @@ export async function updateGearAction(
 ): Promise<ActionState> {
   const id = String(formData.get("id"));
 
+  const imageUrlValue = formData.get("imageUrl");
+
   const payload = {
+    categoryId: String(formData.get("categoryId")),
     name: String(formData.get("name")),
     description: String(formData.get("description")),
     brand: String(formData.get("brand")),
-    categoryId: String(formData.get("categoryId")),
     condition: String(formData.get("condition")) as "NEW" | "USED",
     rentalPricePerDay: Number(formData.get("rentalPricePerDay")),
     quantity: Number(formData.get("quantity")),
     availableQuantity: Number(formData.get("availableQuantity")),
-    imageUrl: String(formData.get("imageUrl") || ""),
+    imageUrl:
+    imageUrlValue &&
+    String(imageUrlValue).trim() !== ""
+      ? String(imageUrlValue)
+      : undefined,
   };
+
+  console.log("update gear payload","id: ", id, "payload", payload, "update gear payload");
 
   try {
     await providerService.updateGear(

@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 
 import { Loader2 } from "lucide-react";
 
@@ -21,6 +21,7 @@ import {
 import { Category, CreateGearPayload } from "@/types";
 import { ActionState } from "@/types/action";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 const initialState: ActionState = {
   success: false,
@@ -49,6 +50,7 @@ export default function GearForm({
   defaultValues,
   action,
   submitText = "Save",
+  onSuccess,
 }: Props) {
   const [state, formAction, pending] = useActionState(action, initialState);
 
@@ -56,9 +58,20 @@ export default function GearForm({
 
   const [condition, setCondition] = useState(defaultValues?.condition ?? "NEW");
 
+  useEffect(() => {
+    if (!state.message) return;
+
+    if (state.success) {
+      toast.success(state.message);
+
+      onSuccess?.();
+    } else {
+      toast.error(state.message);
+    }
+  }, [state, onSuccess]);
+
   return (
     <form action={formAction} className="space-y-6">
-
       {!state.success && state.message && (
         <p className="text-red-500">{state.message}</p>
       )}
@@ -98,7 +111,12 @@ export default function GearForm({
         <div>
           <Label>Image URL</Label>
 
-          <Input name="imageUrl" defaultValue={defaultValues?.imageUrl ?? ""} />
+          <Input
+            name="imageUrl"
+            type="url"
+            placeholder="https://image.jpg"
+            defaultValue={defaultValues?.imageUrl ?? ""}
+          />
         </div>
 
         <div>

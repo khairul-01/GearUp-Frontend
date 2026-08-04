@@ -17,6 +17,14 @@ export default function PublicLayout({
       </main>
 
       <Footer />
+
+      {/* <Navbar />
+
+      <main className="min-h-screen">
+        {children}
+      </main>
+
+      <Footer /> */}
     </>
   );
 }

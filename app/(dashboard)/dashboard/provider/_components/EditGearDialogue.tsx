@@ -22,32 +22,20 @@ interface Props {
   categories: Category[];
 }
 
-export default function EditGearDialog({
-  gear,
-  categories,
-}: Props) {
-  const [open, setOpen] =
-    useState(false);
+export default function EditGearDialog({ gear, categories }: Props) {
+  const [open, setOpen] = useState(false);
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={setOpen}
-    >
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button
-          size="sm"
-          variant="outline"
-        >
+        <Button size="sm" variant="outline">
           Edit
         </Button>
       </DialogTrigger>
 
       <DialogContent className="max-w-3xl">
         <DialogHeader>
-          <DialogTitle>
-            Edit Gear
-          </DialogTitle>
+          <DialogTitle>Edit Gear</DialogTitle>
         </DialogHeader>
 
         <GearForm
@@ -61,13 +49,12 @@ export default function EditGearDialog({
             description: gear.description,
             brand: gear.brand,
             condition: gear.condition,
-            rentalPricePerDay:
-              gear.rentalPricePerDay,
+            rentalPricePerDay: gear.rentalPricePerDay,
             quantity: gear.quantity,
-            availableQuantity:
-              gear.availableQuantity,
+            availableQuantity: gear.availableQuantity,
             imageUrl: gear.imageUrl,
           }}
+          onSuccess={() => setOpen(false)}
         />
       </DialogContent>
     </Dialog>
