@@ -2,25 +2,41 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import { cn } from "@/lib/utils";
 
-type Props = {
-  href: string;
-  title: string;
-};
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/gear", label: "Gear" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
 
-export default function NavItem({ href, title }: Props) {
+export default function NavLinks() {
   const pathname = usePathname();
 
-  const isActive = pathname === href || pathname.startsWith(`${href}/`);
   return (
-    <Link
-      href={href}
-      className={`transition-colors hover:text-primary ${
-        isActive ? "font-semibold text-primary" : "text-muted-foreground"
-      }`}
-    >
-      {title}
-    </Link>
+    <>
+      {links.map((link) => {
+        const active =
+          link.href === "/"
+            ? pathname === "/"
+            : pathname.startsWith(link.href);
+
+        return (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={cn(
+              "transition-colors hover:text-primary",
+              active
+                ? "font-semibold text-primary"
+                : "text-muted-foreground"
+            )}
+          >
+            {link.label}
+          </Link>
+        );
+      })}
+    </>
   );
 }

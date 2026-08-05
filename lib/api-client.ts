@@ -19,6 +19,8 @@ export async function apiClient<T>(
 
   requestHeaders.set("Content-Type", "application/json");
 
+  requestHeaders.set("Accept", "application/json");
+
   if (requireAuth) {
     const cookieStore = await cookies();
 
@@ -29,20 +31,61 @@ export async function apiClient<T>(
     }
   }
 
-  const url = `${BASE_URL}${endpoint}`;
-  console.log("Fetching:", url);
+  const controller = new AbortController();
 
-  const response = await fetch(`${BASE_URL}${endpoint}`, {
-    ...rest,
-    cache: "no-store",
-    headers: requestHeaders,
-  });
+  const timeout = setTimeout(() => {
+    controller.abort();
+  }, 15000);
 
-  const result = await response.json();
+  try {
+    let response: Response;
 
-  if (!response.ok) {
-    throw new Error(result?.message ?? "Unexpected server error.");
+    try {
+      response = await fetch(`${BASE_URL}${endpoint}`, {
+        ...rest,
+        cache: "no-store",
+        headers: requestHeaders,
+        signal: controller.signal,
+      });
+    } catch {
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
+      response = await fetch(`${BASE_URL}${endpoint}`, {
+        ...rest,
+        cache: "no-store",
+        headers: requestHeaders,
+        signal: controller.signal,
+      });
+    }
+
+    clearTimeout(timeout);
+
+    let result: any = null;
+
+    try {
+      result = await response.json();
+    } catch {
+      result = null;
+    }
+
+    if (!response.ok) {
+      throw new Error(result?.message ?? `Request failed (${response.status})`);
+    }
+
+    return result;
+  } catch (error) {
+    clearTimeout(timeout);
+
+    if (error instanceof DOMException && error.name === "AbortError") {
+      throw new Error("Request timed out. Please try again.");
+    }
+
+    if (error instanceof TypeError) {
+      throw new Error(
+        "Unable to connect to the server. Please check your internet connection.",
+      );
+    }
+
+    throw error;
   }
-
-  return result;
 }

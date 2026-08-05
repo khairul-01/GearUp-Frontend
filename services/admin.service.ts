@@ -22,7 +22,7 @@ export const adminService = {
   // update user status
   updateUserStatus(
     userId: string,
-    status: "ACTIVE" | "INACTIVE"
+    status: "ACTIVE" | "SUSPENDED"
   ) {
     return apiClient<ApiResponse<User>>(
       API_ENDPOINTS.ADMIN.UPDATE_USER(userId),

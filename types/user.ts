@@ -19,7 +19,7 @@ export interface User {
     phone: string;
     profileImage: string | null;
     role: UserRole;
-    status: "ACTIVE" | "INACTIVE";
+    status: "ACTIVE" | "SUSPENDED";
     createdAt: string;
     updatedAt: string;
 };
@@ -30,5 +30,5 @@ export interface User {
 // }
 
 export interface UpdateUserPayload {
-    status?: "ACTIVE" | "INACTIVE";
+    status?: "ACTIVE" | "SUSPENDED";
 }

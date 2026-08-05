@@ -45,6 +45,7 @@ import MobileMenu from "./MobileMenu";
 
 import { Button } from "@/components/ui/button";
 import UserMenu from "./UserMenu";
+import NavLinks from "./NavItem";
 
 export default async function Navbar() {
   const user = await getCurrentUser();
@@ -60,13 +61,7 @@ export default async function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
-          <Link href="/">Home</Link>
-
-          <Link href="/gear">Gear</Link>
-
-          <Link href="/about">About</Link>
-
-          <Link href="/contact">Contact</Link>
+          <NavLinks />
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">

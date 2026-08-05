@@ -7,16 +7,20 @@ import {
   Boxes,
   ShoppingBag,
 } from "lucide-react";
+import { gearService } from "@/services/gear.service";
+import { categoryService } from "@/services/category.service";
 
 export default async function AdminDashboard() {
   const [
     users,
     gear,
     rentals,
+    categories,
   ] = await Promise.all([
     adminService.getUsers(),
     adminService.getGear(),
     adminService.getRentals(),
+    categoryService.getAll()
   ]);
 
   return (
@@ -42,6 +46,12 @@ export default async function AdminDashboard() {
           title="Rentals"
           value={rentals.data.length}
           icon={ShoppingBag}
+        />
+        
+        <StatCard
+          title="Categories"
+          value={categories.data.length}
+          icon={Boxes}
         />
       </StatsGrid>
     </div>
