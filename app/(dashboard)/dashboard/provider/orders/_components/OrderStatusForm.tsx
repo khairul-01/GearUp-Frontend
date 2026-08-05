@@ -113,7 +113,7 @@ const nextStatuses: Record<
 > = {
   PLACED: ["CONFIRMED"],
   CONFIRMED: [],
-  PAID: ["RETURNED"],
+  PAID: ["PICKED_UP"],
   PICKED_UP: ["RETURNED"],
   RETURNED: [],
   CANCELLED: [],

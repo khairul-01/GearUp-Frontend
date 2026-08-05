@@ -1,18 +1,20 @@
-import { API_ENDPOINTS } from "@/constants";
+import { API_ENDPOINTS } from "@/constants/api-endpoints";
 import { apiClient } from "@/lib/api-client";
-import { CreateReviewPayload } from "@/types";
+
+import { ApiResponse } from "@/types/api";
+import {
+  CreateReviewPayload,
+  Review,
+} from "@/types/review";
 
 export const reviewService = {
-  createReview(
-    payload: CreateReviewPayload,
-    token: string
-  ) {
-    return apiClient(
+  create(payload: CreateReviewPayload) {
+    return apiClient<ApiResponse<Review>>(
       API_ENDPOINTS.REVIEW.CREATE,
       {
         method: "POST",
+        requireAuth: true,
         body: JSON.stringify(payload),
-        token,
       }
     );
   },
