@@ -5,6 +5,8 @@ export interface Category {
 
   name: string;
 
+  gearItemCount: number;
+
   description: string;
 
   createdAt: string;
