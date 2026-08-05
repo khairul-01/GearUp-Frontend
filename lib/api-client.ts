@@ -1,6 +1,7 @@
 // lib/api-client.ts
 
 import { COOKIES } from "@/constants";
+import { ApiError } from "@/types";
 import { cookies } from "next/headers";
 
 const BASE_URL = process.env.BACKEND_API_URL!;
@@ -60,7 +61,7 @@ export async function apiClient<T>(
 
     clearTimeout(timeout);
 
-    let result: any = null;
+    let result: ApiError | T | null = null;
 
     try {
       result = await response.json();
@@ -69,10 +70,18 @@ export async function apiClient<T>(
     }
 
     if (!response.ok) {
-      throw new Error(result?.message ?? `Request failed (${response.status})`);
+      const errorMessage =
+        typeof result === "object" &&
+        result !== null &&
+        "message" in result &&
+        typeof result.message === "string"
+          ? result.message
+          : `Request failed (${response.status})`;
+
+      throw new Error(errorMessage);
     }
 
-    return result;
+    return result as T;
   } catch (error) {
     clearTimeout(timeout);
 
