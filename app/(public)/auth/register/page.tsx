@@ -7,7 +7,7 @@ export default async function RegisterPage() {
   const user = await getCurrentUser();
   // check if user is already a provider by role checking
   if (user?.role === "PROVIDER") {
-    redirect("/");
+    redirect("/dashboard/provider");
   }
   return (
     <section className="mx-auto flex min-h-[calc(100vh-8rem)] w-full max-w-md items-center px-4">

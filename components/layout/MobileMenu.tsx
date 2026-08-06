@@ -32,6 +32,8 @@ import {
 
 import { logoutAction } from "@/app/_action/logout.action";
 import ThemeToggle from "./ThemeToggle";
+import { Item } from "radix-ui/accordion";
+import { Avatar, AvatarFallback } from "../ui/avatar";
 
 interface Props {
   user: User | null;
@@ -79,21 +81,24 @@ export default function MobileMenu({ user }: Props) {
           </Button>
         </SheetTrigger>
 
-        <SheetContent side="right" className="w-80 p-0">
+        <SheetContent side="right" className="flex flex-col h-full w-80 p-0">
           <SheetHeader className="border-b p-6">
             <SheetTitle className="text-left text-2xl font-bold">
               GearUp
             </SheetTitle>
           </SheetHeader>
 
-          <div className="flex h-full flex-col">
+          <div className="flex h-full flex-col flex-1 overflow-y-auto">
             {/* Main Navigation */}
 
             <div className="space-y-1 p-4">
               {navItems.map((item) => {
                 const Icon = item.icon;
 
-                const active = pathname === item.href;
+                const active =
+                  item.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(item.href);
 
                 return (
                   <SheetClose key={item.href} asChild>
@@ -119,12 +124,18 @@ export default function MobileMenu({ user }: Props) {
             {user ? (
               <>
                 <div className="space-y-4 p-4">
-                  <div>
-                    <h4 className="font-semibold">{user.name}</h4>
+                  <div className="mb-6 flex items-center gap-3 rounded-xl border p-4">
+                    <Avatar>
+                      <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
 
-                    <p className="text-sm text-muted-foreground">
-                      {user.email}
-                    </p>
+                    <div>
+                      <p className="font-medium">{user.name}</p>
+
+                      <p className="text-xs text-muted-foreground">
+                        {user.email}
+                      </p>
+                    </div>
                   </div>
 
                   <SheetClose asChild>
@@ -179,16 +190,16 @@ export default function MobileMenu({ user }: Props) {
               </div>
             )}
           </div>
+
+          <div className="border-t p-4">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Theme</span>
+
+              <ThemeToggle />
+            </div>
+          </div>
         </SheetContent>
       </Sheet>
-
-      <div className="border-t p-4">
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-medium">Theme</span>
-
-          <ThemeToggle />
-        </div>
-      </div>
     </div>
   );
 }
