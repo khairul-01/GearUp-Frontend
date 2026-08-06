@@ -35,7 +35,11 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
     locale: "en-US",
     type: "website",
-  }
+  },
+
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -45,14 +49,19 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en suppressHydrationWarning"
+      lang="en" 
+      suppressHydrationWarning
       
     >
-      <body className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}>
+      <body className={cn(
+        "min-h-screen bg-background", "font-sans", "antialiased", 
+        geistSans.variable, 
+        geistMono.variable,  
+        inter.variable)}>
         <Providers>
           <div className="flex min-h-screen flex-col">
             
-            <main className="flex-1">
+            <main className="flex-1 ">
               {children}
             </main>
 

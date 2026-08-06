@@ -1,26 +1,39 @@
 "use client";
 
 import { User } from "@/types";
+
 import { ReactNode } from "react";
-import DashboardSidebar from "./DashboardSidebar";
+
 import DashboardHeader from "./DashboardHeader";
+import DashboardSidebar from "./DashboardSidebar";
 
 interface Props {
   user: User;
   children: ReactNode;
 }
 
-export default function DashboardShell({ user, children }: Props) {
+export default function DashboardShell({
+  user,
+  children,
+}: Props) {
   return (
-    <div className="flex min-h-screen bg-muted/30">
-      <div className="hidden lg:block">
-        <DashboardSidebar user={user} />
-      </div>
+    <div className="min-h-screen bg-muted/30">
+      <div className="flex">
+        {/* Desktop Sidebar */}
+        <aside className="hidden border-r bg-background lg:block">
+          <DashboardSidebar user={user} />
+        </aside>
 
-      <div className="flex flex-1 flex-col">
-        <DashboardHeader user={user} />
+        {/* Main */}
+        <div className="flex min-h-screen flex-1 flex-col">
+          <DashboardHeader user={user} />
 
-        <main className="flex-1 p-6">{children}</main>
+          <main className="flex-1 overflow-y-auto">
+            <div className="mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8">
+              {children}
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   );

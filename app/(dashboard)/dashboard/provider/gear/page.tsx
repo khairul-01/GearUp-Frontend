@@ -15,7 +15,10 @@ export default async function ProviderGearPage() {
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
+      <h1 className="text-3xl font-bold">
+          Manage Gear
+        </h1>
+      {/* <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">
           Manage Gear
         </h1>
@@ -25,7 +28,7 @@ export default async function ProviderGearPage() {
             Add Gear
           </Link>
         </Button>
-      </div>
+      </div> */}
 
       <ProviderGearTable
         gears={gearResponse.data}

@@ -22,7 +22,7 @@ export default function RatingInput({
           className={`h-7 w-7 cursor-pointer ${
             star <= value
               ? "fill-yellow-400 text-yellow-400"
-              : "text-gray-300"
+              : "text-muted-foreground"
           }`}
         />
       ))}

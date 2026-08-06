@@ -1,19 +1,20 @@
 "use client";
 
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "./ThemeProvider";
 
-type ProvidersProps = {
+interface Props {
   children: React.ReactNode;
-};
+}
 
 export default function Providers({
   children,
-}: ProvidersProps) {
+}: Props) {
   return (
-    <>
+    <ThemeProvider>
       {children}
 
       <Toaster richColors position="top-right" />
-    </>
+    </ThemeProvider>
   );
 }

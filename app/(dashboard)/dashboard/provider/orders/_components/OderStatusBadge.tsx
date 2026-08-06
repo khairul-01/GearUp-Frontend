@@ -7,7 +7,7 @@ export default function OrderStatusBadge({
 }: Props) {
   const colors: Record<string, string> = {
     PLACED:
-      "bg-gray-100 text-gray-700",
+      "bg-gray-100 text-muted-foreground",
 
     CONFIRMED:
       "bg-blue-100 text-blue-700",
