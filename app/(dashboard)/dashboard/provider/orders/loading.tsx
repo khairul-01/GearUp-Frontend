@@ -1,9 +1,18 @@
+import { Skeleton } from "@/components/ui/skeleton";
+
 export default function Loading() {
   return (
     <div className="space-y-4">
-      <div className="h-10 w-60 animate-pulse rounded bg-muted" />
 
-      <div className="h-96 animate-pulse rounded bg-muted" />
+      <Skeleton className="h-10 w-56" />
+
+      {[...Array(6)].map((_, i) => (
+        <Skeleton
+          key={i}
+          className="h-24 w-full rounded-xl"
+        />
+      ))}
+
     </div>
   );
 }

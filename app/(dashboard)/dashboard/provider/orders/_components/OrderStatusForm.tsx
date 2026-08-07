@@ -107,10 +107,7 @@ const initialState: ActionState = {
   message: "",
 };
 
-const nextStatuses: Record<
-  Rental["status"],
-  Rental["status"][]
-> = {
+const nextStatuses: Record<Rental["status"], Rental["status"][]> = {
   PLACED: ["CONFIRMED"],
   CONFIRMED: [],
   PAID: ["PICKED_UP"],
@@ -123,17 +120,13 @@ interface Props {
   order: Rental;
 }
 
-export default function OrderStatusForm({
-  order,
-}: Props) {
-  const [status, setStatus] =
-    useState(order.status);
+export default function OrderStatusForm({ order }: Props) {
+  const [status, setStatus] = useState(order.status);
 
-  const [state, formAction, pending] =
-    useActionState(
-      updateOrderAction,
-      initialState
-    );
+  const [state, formAction, pending] = useActionState(
+    updateOrderAction,
+    initialState,
+  );
 
   useEffect(() => {
     if (!state.message) return;
@@ -145,63 +138,43 @@ export default function OrderStatusForm({
     }
   }, [state]);
 
-  const options =
-    nextStatuses[order.status];
+  const options = nextStatuses[order.status];
 
   if (options.length === 0) {
     return (
-      <Button
-        size="sm"
-        disabled
-      >
-        No Action Available
+      <Button size="sm" disabled>
+        <div className="rounded-lg border bg-muted px-3 py-2 text-center text-sm text-muted-foreground">
+          No further action
+        </div>
       </Button>
     );
   }
 
   return (
     <form action={formAction}>
-      <input
-        type="hidden"
-        name="id"
-        value={order.id}
-      />
+      <input type="hidden" name="id" value={order.id} />
 
-      <input
-        type="hidden"
-        name="status"
-        value={status}
-      />
+      <input type="hidden" name="status" value={status} />
 
-      <div className="flex gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
         <Select
           value={status}
-          onValueChange={(value) =>
-            setStatus(
-              value as Rental["status"]
-            )
-          }
+          onValueChange={(value) => setStatus(value as Rental["status"])}
         >
-          <SelectTrigger className="w-44">
+          <SelectTrigger className="w-full sm:w-44">
             <SelectValue />
           </SelectTrigger>
 
           <SelectContent>
             {options.map((item) => (
-              <SelectItem
-                key={item}
-                value={item}
-              >
+              <SelectItem key={item} value={item}>
                 {item}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
 
-        <Button
-          size="sm"
-          disabled={pending}
-        >
+        <Button size="sm" className="sm:w-auto w-full" disabled={pending}>
           Save
         </Button>
       </div>

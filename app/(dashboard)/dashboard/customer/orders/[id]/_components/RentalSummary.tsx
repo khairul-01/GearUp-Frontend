@@ -22,7 +22,7 @@ export default function RentalSummary({
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="grid gap-4 md:grid-cols-2">
+      <CardContent className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
         <div>
           <p className="font-medium">
             Gear

@@ -15,8 +15,8 @@ export default function CategoryTable({ categories }: Props) {
     );
   }
   return (
-    <div className="rounded-xl border">
-      <table className="w-full">
+    <div className="overflow-x-auto rounded-xl border bg-card shadow-sm">
+      <table className="min-w-[900px] w-full">
         <thead>
           <tr className="border-b">
             <th className="p-4 text-left">Name</th>

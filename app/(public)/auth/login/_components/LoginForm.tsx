@@ -29,7 +29,12 @@ export default function LoginForm() {
       <div className="space-y-2">
         <Label>Email</Label>
 
-        <Input type="email" name="email" placeholder="Enter your email" />
+        <Input 
+        type="email" 
+        name="email" 
+        placeholder="name@example.com" 
+        autoComplete="email"
+        />
 
         {state.errorDetails?.email && (
           <p className="text-sm text-destructive">
@@ -46,7 +51,7 @@ export default function LoginForm() {
             type="password"
             name="password"
             placeholder="Enter your password"
-            className="pr-10"
+            autoComplete="current-password"
           />
 
           {/* <button

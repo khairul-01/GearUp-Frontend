@@ -18,8 +18,8 @@ export default function GearTable({
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border">
-      <table className="w-full">
+    <div className="overflow-x-auto rounded-lg border bg-card shadow-sm">
+      <table className="min-w-[900px] w-full">
         <thead className="bg-muted">
           <tr>
             <th className="p-3 text-left">

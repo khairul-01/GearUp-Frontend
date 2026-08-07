@@ -7,36 +7,36 @@ interface Props {
 
 export default function UsersTable({ users }: Props) {
   return (
-    <div className="overflow-x-auto rounded-lg border">
-      <table className="w-full">
+    <div className="overflow-x-auto rounded-xl border bg-card shadow-sm">
+      <table className="min-w-[900px] w-full">
         <thead className="bg-muted">
           <tr>
-            <th className="p-3 text-left">Name</th>
+            <th className="p-3 text-left border-l">Name</th>
 
-            <th>Email</th>
+            <th className="p-3 text-left border-l">Email</th>
 
-            <th>Phone</th>
+            <th className="p-3 text-left border-l">Phone</th>
 
-            <th>Role</th>
+            <th className="p-3 text-left border-l">Role</th>
 
-            <th>Status</th>
+            <th className="p-3 text-left border-l">Status</th>
 
-            <th>Action</th>
+            <th className="p-3 text-left border-l">Action</th>
           </tr>
         </thead>
 
         <tbody>
           {users.map((user) => (
             <tr key={user.id} className="border-t">
-              <td className="p-3">{user.name}</td>
+              <td className="p-3 border-l">{user.name}</td>
 
-              <td>{user.email}</td>
+              <td className="p-3 border-l">{user.email}</td>
 
-              <td>{user.phone}</td>
+              <td className="p-3 border-l">{user.phone}</td>
 
-              <td>{user.role}</td>
-              <td>{user.status}</td>
-              <td >
+              <td className="p-3 border-l">{user.role}</td>
+              <td className="p-3 border-l">{user.status}</td>
+              <td className="p-3 border-l">
                 <UpdateUserStatusDialog 
                 id={user.id} 
                 status={user.status} 

@@ -29,7 +29,7 @@ export default function DashboardShell({
           <DashboardHeader user={user} />
 
           <main className="flex-1 overflow-y-auto">
-            <div className="mx-auto w-full max-w-7xl p-4 sm:p-6 lg:p-8">
+            <div className="mx-auto w-full max-w-7xl p-2 sm:p-4 lg:p-6">
               {children}
             </div>
           </main>

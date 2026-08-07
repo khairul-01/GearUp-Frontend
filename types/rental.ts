@@ -83,6 +83,11 @@ export interface Rental {
   customer: User;
   gearItem: Gear;
   provider: User;
+  review?: {
+    id: string;
+    rating: number;
+    comment?: string;
+  };
 }
 
 export interface CreateRentalPayload {

@@ -1,5 +1,5 @@
 import { Rental } from "@/types";
-import OrderStatusBadge from "../../../provider/orders/_components/OderStatusBadge";
+import OrderStatusBadge from "../../../provider/orders/_components/OrderStatusBadge";
 interface Props {
   rentals: Rental[];
 }
@@ -16,21 +16,21 @@ export default function RentalsTable({
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border">
-      <table className="w-full">
+    <div className="overflow-x-auto rounded-xl border bg-card shadow-sm">
+      <table className="min-w-[900px] w-full">
         <thead className="bg-muted">
           <tr>
-            <th className="p-3 text-left">
+            <th className="p-3 text-left border-l">
               Customer
             </th>
 
-            <th>Gear</th>
+            <th className="p-3 text-left border-l">Gear</th>
 
-            <th>Provider</th>
+            <th className="p-3 text-left border-l">Provider</th>
 
-            <th>Amount</th>
+            <th className="p-3 text-left border-l">Amount</th>
 
-            <th>Status</th>
+            <th className="p-3 text-left border-l">Status</th>
           </tr>
         </thead>
 
@@ -40,24 +40,24 @@ export default function RentalsTable({
               key={rental.id}
               className="border-t"
             >
-              <td className="p-3">
+              <td className="p-3 border-l">
                 {rental.customer.name}
               </td>
 
-              <td>
+              <td className="p-3 border-l">
                 {rental.gearItem.name}
               </td>
 
-              <td>
+              <td className="p-3 border-l">
                 {rental.gearItem.provider?.name}
               </td>
 
-              <td>
+              <td className="p-3 border-l">
                 ৳
                 {rental.totalAmount}
               </td>
 
-              <td>
+              <td className="p-3 border-l">
                 <OrderStatusBadge
                   status={rental.status}
                 />

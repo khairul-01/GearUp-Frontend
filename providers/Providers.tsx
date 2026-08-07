@@ -1,19 +1,21 @@
 "use client";
 
-import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider } from "./ThemeProvider";
-
-interface Props {
-  children: React.ReactNode;
-}
+import { ThemeProvider } from "next-themes";
+import { Toaster } from "sonner";
 
 export default function Providers({
   children,
-}: Props) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <ThemeProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
       {children}
-
       <Toaster richColors position="top-right" />
     </ThemeProvider>
   );
