@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import { DropdownMenuItem } from "../ui/dropdown-menu";
-import { logoutAction } from "@/app/_action/logout.action";
+import { logoutAction } from "@/app/(authentication)/_action/logout.action";
 import { LogOut } from "lucide-react";
 
 export default function LogoutButton() {

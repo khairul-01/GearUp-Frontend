@@ -26,15 +26,15 @@ export default function GearTable({
               Image
             </th>
 
-            <th>Name</th>
+            <th className="p-3 border-l">Name</th>
 
-            <th>Category</th>
+            <th className="p-3 border-l">Category</th>
 
-            <th>Provider</th>
+            <th className="p-3 border-l">Provider</th>
 
-            <th>Price</th>
+            <th className="p-3 border-l">Price</th>
 
-            <th>Available</th>
+            <th className="p-3 border-l">Available</th>
           </tr>
         </thead>
 
@@ -44,7 +44,7 @@ export default function GearTable({
               key={gear.id}
               className="border-t"
             >
-              <td className="p-3">
+              <td className="p-3 border-l">
                 <Image
                   src={
                     gear.imageUrl ||
@@ -57,22 +57,24 @@ export default function GearTable({
                 />
               </td>
 
-              <td>{gear.name}</td>
+              <td className="p-3 border-l">
+                {gear.name}
+              </td>
 
-              <td>
+              <td className="p-3 border-l">
                 {gear.category.name}
               </td>
 
-              <td>
+              <td className="p-3 border-l">
                 {gear.provider.name}
               </td>
 
-              <td>
+              <td className="p-3 border-l">
                 ৳
                 {gear.rentalPricePerDay}
               </td>
 
-              <td>
+              <td className="p-3 border-l">
                 {gear.availableQuantity}
               </td>
             </tr>

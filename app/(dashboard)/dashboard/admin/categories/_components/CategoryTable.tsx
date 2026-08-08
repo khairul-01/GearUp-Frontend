@@ -19,22 +19,22 @@ export default function CategoryTable({ categories }: Props) {
       <table className="min-w-[900px] w-full">
         <thead>
           <tr className="border-b">
-            <th className="p-4 text-left">Name</th>
+            <th className="p-4 text-left border-l">Name</th>
 
-            <th>Description</th>
+            <th className="p-4 border-l">Description</th>
 
-            <th>Total Gear</th>
+            <th className="p-4 border-l">Total Gear</th>
           </tr>
         </thead>
 
         <tbody>
           {categories.map((category) => (
             <tr key={category.id} className="border-b">
-              <td className="p-4 font-medium">{category.name}</td>
+              <td className="p-4 font-medium border-l">{category.name}</td>
 
-              <td>{category.description}</td>
+              <td className="p-4 border-l">{category.description}</td>
 
-              <td>{category.gearItemCount}</td>
+              <td className="p-4 border-l">{category.gearItemCount}</td>
             </tr>
           ))}
         </tbody>

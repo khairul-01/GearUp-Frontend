@@ -22,40 +22,46 @@ Built using **Next.js App Router**, **Express.js**, **TypeScript**, **Prisma ORM
 
 # 🌐 Live Demo
 
-| Project | Link |
-|----------|------|
-| Frontend | https://your-frontend.vercel.app |
-| Backend API | https://your-backend.vercel.app |
+| Project     | Link                                    |
+| ----------- | --------------------------------------- |
+| Frontend    | https://gearup-frontend-rose.vercel.app |
+| Backend API | https://gear-up-backend-jet.vercel.app  |
 
 ---
 
-# 🎥 Demo Video
+<!-- # 🎥 Demo Video
 
 https://your-demo-video-link
 
----
+--- -->
 
 # 📸 Screenshots
 
 ## Home Page
 
-> Add screenshot
+<!-- > Add screenshot -->
 
-```text
+![Home Page](public/screenshots/home.png)
+
+<!-- ```text
 public/screenshots/home.png
-```
+``` -->
 
 ---
 
 ## Gear Listing
 
-```text
+![Gear](public/screenshots/gear.png)
+
+<!-- ```text
 public/screenshots/gear.png
-```
+``` -->
 
 ---
 
 ## Customer Dashboard
+
+![customer-dashboard](public/screenshots/customer-dashboard.png)
 
 ```text
 public/screenshots/customer-dashboard.png
@@ -65,17 +71,21 @@ public/screenshots/customer-dashboard.png
 
 ## Provider Dashboard
 
-```text
+![provider-dashboard](public/screenshots/provider-dashboard.png)
+
+<!-- ```text
 public/screenshots/provider-dashboard.png
-```
+``` -->
 
 ---
 
 ## Admin Dashboard
 
-```text
+![admin-dashboard](public/screenshots/admin-dashboard.png)
+
+<!-- ```text
 public/screenshots/admin-dashboard.png
-```
+``` -->
 
 ---
 
@@ -194,7 +204,7 @@ public/screenshots/admin-dashboard.png
 ## Deployment
 
 - Vercel
-- Neon PostgreSQL (or your PostgreSQL provider)
+- Prisma PostgreSQL
 
 ---
 
@@ -204,12 +214,21 @@ public/screenshots/admin-dashboard.png
 
 ```json
 {
-  "next": "16",
-  "react": "19",
-  "typescript": "5",
-  "tailwindcss": "4",
-  "shadcn/ui": "latest",
-  "lucide-react": "latest"
+  "class-variance-authority": "^0.7.1",
+  "clsx": "^2.1.1",
+  "jwt-decode": "^4.0.0",
+  "lucide-react": "^1.27.0",
+  "next": "16.2.12",
+  "next-themes": "^0.4.6",
+  "radix-ui": "^1.6.7",
+  "react": "19.2.4",
+  "react-dom": "19.2.4",
+  "react-hook-form": "^7.83.0",
+  "shadcn": "^4.16.0",
+  "sonner": "^2.0.7",
+  "tailwind-merge": "^3.6.0",
+  "tw-animate-css": "^1.4.0",
+  "zod": "^4.4.3"
 }
 ```
 
@@ -219,18 +238,23 @@ public/screenshots/admin-dashboard.png
 
 ```json
 {
-  "express": "^5",
-  "typescript": "^5",
-  "prisma": "^6",
-  "@prisma/client": "^6",
-  "jsonwebtoken": "^9",
-  "bcrypt": "^6",
-  "stripe": "^18",
-  "zod": "^4"
+  "@prisma/adapter-pg": "^7.8.0",
+  "@prisma/client": "^7.8.0",
+  "bcrypt": "^6.0.0",
+  "cookie-parser": "^1.4.7",
+  "cors": "^2.8.6",
+  "dotenv": "^17.4.2",
+  "express": "^5.2.1",
+  "http-status": "^2.1.0",
+  "jsonwebtoken": "^9.0.3",
+  "pg": "^8.22.0",
+  "stripe": "^22.3.1",
+  "tsup": "^8.5.1",
+  "zod": "^4.4.3"
 }
 ```
 
----
+<!-- ---
 
 # 📂 Project Structure
 
@@ -264,7 +288,7 @@ gearup/
 │   └── package.json
 │
 └── README.md
-```
+``` -->
 
 ---
 
@@ -317,9 +341,9 @@ APP_URL=https://your-frontend.vercel.app
 ## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/gearup.git
+git clone https://github.com/khairul-01/GearUp-Frontend.git
 
-cd gearup
+cd GearUp-Frontend
 ```
 
 ---
@@ -327,7 +351,9 @@ cd gearup
 ## Backend
 
 ```bash
-cd gearup-backend
+git clone https://github.com/khairul-01/GearUp-Backend.git
+
+cd GearUp-Backend
 
 pnpm install
 ```
@@ -341,7 +367,7 @@ pnpm prisma generate
 Run Migrations
 
 ```bash
-pnpm prisma migrate deploy
+pnpm prisma migrate dev
 ```
 
 Start Development Server
@@ -355,7 +381,7 @@ pnpm dev
 ## Frontend
 
 ```bash
-cd gearup-frontend
+cd GearUp-Frontend
 
 pnpm install
 
@@ -382,11 +408,11 @@ http://localhost:5000
 
 # 👥 User Roles
 
-| Role | Permissions |
-|------|-------------|
-| Customer | Rent Gear, Payment, Reviews |
-| Provider | Manage Gear, Manage Orders |
-| Admin | Manage Users, Categories, Rentals |
+| Role     | Permissions                       |
+| -------- | --------------------------------- |
+| Customer | Rent Gear, Payment, Reviews       |
+| Provider | Manage Gear, Manage Orders        |
+| Admin    | Manage Users, Categories, Rentals |
 
 ---
 
@@ -563,11 +589,11 @@ GET    /api/admin/rentals
 
 # 🧪 Test Accounts
 
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | your_admin@mail.com | ******** |
-| Provider | provider@mail.com | ******** |
-| Customer | customer@mail.com | ******** |
+| Role     | Email               | Password     |
+| -------- | ------------------- | ------------ |
+| Admin    | your_admin@mail.com | **\*\*\*\*** |
+| Provider | provider@mail.com   | **\*\*\*\*** |
+| Customer | customer@mail.com   | **\*\*\*\*** |
 
 ---
 
@@ -643,17 +669,17 @@ Contributions are welcome!
 
 **Khairul Alam**
 
-- GitHub: https://github.com/YOUR_GITHUB_USERNAME
-- LinkedIn: https://linkedin.com/in/YOUR_LINKEDIN
-- Email: YOUR_EMAIL@example.com
+- GitHub: https://github.com/khairul-01
+- LinkedIn: https://linkedin.com/in/khairul01
+- Email: khairul431743@gmail.com
 
 ---
 
-# 📄 License
+<!-- # 📄 License
 
 This project is licensed under the **MIT License**.
 
----
+--- -->
 
 ## ⭐ Support
 

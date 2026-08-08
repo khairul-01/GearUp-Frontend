@@ -14,7 +14,15 @@ export default function GearCard({ gear }: Props) {
   return (
     <Card className="overflow-hidden">
       <div className="relative aspect-[4/3]">
-        <Image src={image} alt={gear.name} fill className="object-cover" />
+        <Image
+          src={image}
+          alt={gear.name}
+          fill
+          sizes="(max-width:640px) 100vw,
+                  (max-width:1024px) 50vw,
+                  33vw"
+          className="object-cover"
+        />
       </div>
 
       <div className="space-y-3 p-5">

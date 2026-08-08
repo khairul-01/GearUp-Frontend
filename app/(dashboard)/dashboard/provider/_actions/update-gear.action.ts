@@ -21,7 +21,7 @@ export async function updateGearAction(
     condition: String(formData.get("condition")) as "NEW" | "USED",
     rentalPricePerDay: Number(formData.get("rentalPricePerDay")),
     quantity: Number(formData.get("quantity")),
-    availableQuantity: Number(formData.get("availableQuantity")),
+    // availableQuantity: Number(formData.get("availableQuantity")),
     imageUrl:
     imageUrlValue &&
     String(imageUrlValue).trim() !== ""

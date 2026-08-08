@@ -30,7 +30,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 
-import { logoutAction } from "@/app/_action/logout.action";
+import { logoutAction } from "@/app/(authentication)/_action/logout.action";
 import ThemeToggle from "./ThemeToggle";
 import { Item } from "radix-ui/accordion";
 import { Avatar, AvatarFallback } from "../ui/avatar";
